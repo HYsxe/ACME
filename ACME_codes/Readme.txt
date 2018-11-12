@@ -7,9 +7,11 @@
 
 	2. Installation
 	
-	All you need to do before running the codes is to change the 'main_dir' in main.py
+	Before running the codes, you need to change the 'main_dir' in main.py
 	to the path of this folder. For example
-    	main_dir = "/home/user_1/Attention_CNN/"
+    	main_dir = "/home/user_1/ACME-master/ACME_codes/"
+	Then unzip the proteome data file using the following command
+	unzip proteome.zip
 	
 	You can invoke different functions using the main() function. Just change the argument
 	passed to the main() function in main.py. For example, if you want to use the first function,
