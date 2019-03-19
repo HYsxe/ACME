@@ -73,9 +73,9 @@ def main(func_ind):
         output_path = main_dir + "results/anti_anchor.txt"
         main_anti_anchor([blosum_matrix, aa, main_dir, output_path])  
     elif func_ind == 8:
-        #Clustering of MHC sequencess
+        #Binding prediction
         output_path = main_dir + "results/binding_prediction.txt"
         main_binding_prediction([blosum_matrix, aa, main_dir, output_path])  
 
-main(10)
+main(8)
         
