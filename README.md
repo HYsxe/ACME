@@ -39,7 +39,7 @@ Supplementary data and codes for the ACME algorithm.
     
 2. Repeating the experiments in the ACME paper.
 
-  Please download the ACME_codes/ folder and follow the instructions in the Readme_ACME_repeat.txt file.
+    Please download the ACME_codes/ folder and follow the instructions in the Readme_ACME_repeat.txt file.
   
 Yan Hu
 
