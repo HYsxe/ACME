@@ -37,6 +37,10 @@ Supplementary data and codes for the ACME algorithm.
          
     (6) The results will be saved to ACME_codes/results/binding_prediction.txt
     
+	Prediction scores range from 0 to 1. Higher scores indicate higher binding affinities.
+	
+	Peptides with scores above 0.42 can be considered to be strong binders.
+    
 2. Repeating the experiments in the ACME paper.
 
     Please download the ACME_codes/ folder and follow the instructions in the Readme_ACME_repeat.txt file.
