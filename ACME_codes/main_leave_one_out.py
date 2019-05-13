@@ -24,9 +24,11 @@ def main_leave_one_out(global_args):
     external_dict = read_external_train(path_external, pseq_dict,global_args)
     path_val = main_dir+ "binding_data/binding_data_val.txt"
     validation_data, validation_target = read_validation_data(path_val,pseq_dict,global_args)   
+
+    alleles = ["A*02:01"]
     
     #Remove the redundant data between the training sets
-    for allele in sorted(data_dict.keys()):
+    for allele in alleles:
         if allele in external_dict.keys():
             print allele
             data_dict[allele] = data_dict[allele] + external_dict[allele]
@@ -39,9 +41,13 @@ def main_leave_one_out(global_args):
             print "unique", len(unique_data)
             data_dict[allele] = unique_data
 
+    for allele in sorted(data_dict.keys()):
+        if len(data_dict[allele]) > 100:
+            print allele,len(data_dict[allele])
+
     #Leave-one-out training
     foutput("allele\tPCC\tAUROC\tACC", output_path_1)
-    for left_out_allele in  ["B*57:01"]:
+    for left_out_allele in  ["B*48:01"]:
         foutput(left_out_allele, output_path_1)
         
         #Training data and test data

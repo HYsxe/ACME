@@ -1,4 +1,4 @@
-#https://github.com/philipperemy/keras-visualize-activations/blob/master/read_activations.py
+#Here we adopted the code from https://github.com/philipperemy/keras-visualize-activations/blob/master/read_activations.py
 
 import keras.backend as K
 import numpy as np

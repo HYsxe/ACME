@@ -11,9 +11,9 @@ from model_eval import *
 from math import log
 from model_performance import *
 
-def cross_validation_training(training_data, test_dict, validation_data, validation_target, global_args):
+def cross_validation_training_without_CNN(training_data, test_dict, validation_data, validation_target, global_args):
     '''
-    Cross validation training
+    Cross validation training using only the attention module
     Args:
         1. training_data: Data for training, should be one split of 
                     the output of preaparing_data()
@@ -43,25 +43,6 @@ def cross_validation_training(training_data, test_dict, validation_data, validat
         pep_conv = Conv1D(filters,kernel_size,padding = 'same',activation = 'relu',strides = 1)(inputs_1)
         pep_maxpool = MaxPooling1D()(pep_conv)
         mhc_conv_1 = Conv1D(filters,kernel_size,padding = 'same',activation = 'relu',strides = 1)(inputs_2)
-        mhc_maxpool_1 = MaxPooling1D()(mhc_conv_1)
-        #The convolutional module
-        mhc_conv_2 = Conv1D(filters,kernel_size,padding = 'same',activation = 'relu',strides = 1)(mhc_maxpool_1)
-        mhc_maxpool_2 = MaxPooling1D()(mhc_conv_2)
-        flat_pep_0 = Flatten()(pep_conv)
-        flat_pep_1 = Flatten()(pep_conv)
-        flat_pep_2 = Flatten()(pep_conv)
-        flat_mhc_0 = Flatten()(inputs_2)
-        flat_mhc_1 = Flatten()(mhc_maxpool_1)
-        flat_mhc_2 = Flatten()(mhc_maxpool_2)
-        cat_0 = Concatenate()([flat_pep_0, flat_mhc_0])
-        cat_1 = Concatenate()([flat_pep_1, flat_mhc_1])
-        cat_2 = Concatenate()([flat_pep_2, flat_mhc_2])        
-        fc1_0 = Dense(fc1_size,activation = "relu")(cat_0)
-        fc1_1 = Dense(fc1_size,activation = "relu")(cat_1)
-        fc1_2 = Dense(fc1_size,activation = "relu")(cat_2)
-        merge_1 = Concatenate()([fc1_0, fc1_1, fc1_2])
-        fc2 = Dense(fc2_size,activation = "relu")(merge_1)
-        fc3 = Dense(fc3_size,activation = "relu")(fc2)
         #The attention module
         mhc_attention_weights = Flatten()(TimeDistributed(Dense(1))(mhc_conv_1))
         pep_attention_weights = Flatten()(TimeDistributed(Dense(1))(pep_conv))
@@ -72,7 +53,7 @@ def cross_validation_training(training_data, test_dict, validation_data, validat
         mhc_attention = Dot(-1)([mhc_conv_permute, mhc_attention_weights])
         pep_attention = Dot(-1)([pep_conv_permute, pep_attention_weights])
         #Concatenating the output of the two modules
-        merge_2 = Concatenate()([mhc_attention,pep_attention,fc3])
+        merge_2 = Concatenate()([mhc_attention,pep_attention])
         #Output of the model
         out = Dense(1,activation = "sigmoid")(merge_2)
         model = Model(inputs=[inputs_1, inputs_2],outputs=out)  
@@ -87,12 +68,12 @@ def cross_validation_training(training_data, test_dict, validation_data, validat
             pcc, roc_auc, max_acc = model_eval(model,[np.array(validation_pep),np.array(validation_mhc)],np.array(validation_target))
             foutput(str(n_epoch)+"\t"+str(pcc)+"\t"+str(roc_auc)+"\t"+str(max_acc), output_path)
             #If the pcc after the first epoch is very low, the network is unlikely to be trained well, so start again
-            if n_epoch == 0 and not (pcc > 0.75):
+            if n_epoch == 0 and not (pcc > 0):
                 poor_init = True
                 break
         if poor_init:
             continue
-        if pcc > 0.84:
+        if pcc > 0:
             foutput("Model Adopted", output_path)
             models.append(model)        
     performance_dict = model_performance(models, test_dict, global_args)

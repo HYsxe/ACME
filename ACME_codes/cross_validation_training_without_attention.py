@@ -11,9 +11,9 @@ from model_eval import *
 from math import log
 from model_performance import *
 
-def cross_validation_training(training_data, test_dict, validation_data, validation_target, global_args):
+def cross_validation_training_without_attention(training_data, test_dict, validation_data, validation_target, global_args):
     '''
-    Cross validation training
+    Training a simplified pan specific CNN model to compare with ACME.
     Args:
         1. training_data: Data for training, should be one split of 
                     the output of preaparing_data()
@@ -61,20 +61,8 @@ def cross_validation_training(training_data, test_dict, validation_data, validat
         fc1_2 = Dense(fc1_size,activation = "relu")(cat_2)
         merge_1 = Concatenate()([fc1_0, fc1_1, fc1_2])
         fc2 = Dense(fc2_size,activation = "relu")(merge_1)
-        fc3 = Dense(fc3_size,activation = "relu")(fc2)
-        #The attention module
-        mhc_attention_weights = Flatten()(TimeDistributed(Dense(1))(mhc_conv_1))
-        pep_attention_weights = Flatten()(TimeDistributed(Dense(1))(pep_conv))
-        mhc_attention_weights = Activation('softmax')(mhc_attention_weights)
-        pep_attention_weights = Activation('softmax')(pep_attention_weights)        
-        mhc_conv_permute = Permute((2,1))(mhc_conv_1)
-        pep_conv_permute = Permute((2,1))(pep_conv)
-        mhc_attention = Dot(-1)([mhc_conv_permute, mhc_attention_weights])
-        pep_attention = Dot(-1)([pep_conv_permute, pep_attention_weights])
-        #Concatenating the output of the two modules
-        merge_2 = Concatenate()([mhc_attention,pep_attention,fc3])
         #Output of the model
-        out = Dense(1,activation = "sigmoid")(merge_2)
+        out = Dense(1,activation = "sigmoid")(fc2)
         model = Model(inputs=[inputs_1, inputs_2],outputs=out)  
         model.summary()
         model.compile(loss='mean_squared_error', optimizer='adam', metrics=['mse'])

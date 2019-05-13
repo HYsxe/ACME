@@ -21,10 +21,10 @@ def model_performance(models, test_dict, global_args, alleles = None):
         #See if we are testing on specified alleles
         if alleles is not None and allele not in alleles:
             continue
-        #We only test on datasets with >= 100 data
-        if len(test_dict[allele]) < 100:
+        #We only test on datasets with >= 10 data
+        if len(test_dict[allele]) < 10:
             continue
-        foutput(allele, output_path)
+        foutput(allele+" "+str(len(test_dict[allele])), output_path)
         print allele
         [test_pep, test_mhc, test_target] = [[i[j] for i in test_dict[allele]] for j in range(3)] 
         #Evaluate the performance of our model.

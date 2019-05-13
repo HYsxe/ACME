@@ -38,15 +38,10 @@ def main_MHC_clustering(global_args):
     alleles = sorted(data_dict.keys())
     n_alleles = len(alleles)
     similarity_matrix = np.zeros((n_alleles, n_alleles))
-    print(n_alleles)
     for i in range(n_alleles):
-        print(i)
         for j in range(n_alleles):
-            print(j)
             similarity_matrix[i][j] = distance.levenshtein(pseq_dict[alleles[i]],\
                              pseq_dict[alleles[j]])
-    for i in range(n_alleles):
-        print(alleles[i], similarity_matrix[i])
     
     #Measuring how much information one allele can obtain from the data of other alleles
     #We assume the information obtained is proportional to the size of the dataset and
@@ -57,7 +52,7 @@ def main_MHC_clustering(global_args):
         sum_info = 0
         for j in range(n_alleles):
             if i != j:#Exclude the allele in question itself
-                sum_info += dataset_size[j]*pow((similarity_matrix[i][j]) + 1, -2)
+                sum_info += dataset_size[j]*pow((similarity_matrix[i][j])+1, -2)
         reference_info.append(sum_info)
     for i in range(n_alleles):
-        print(alleles[i], reference_info[i])
+        foutput(alleles[i] + "\t" + str(reference_info[i]), output_path)

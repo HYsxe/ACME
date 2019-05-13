@@ -6,10 +6,12 @@ from preparing_data import *
 from model_training import *
 from foutput import *
 from model_performance import *
-from cross_validation_training import *
+from cross_validation_training_without_CNN import *
+from cross_validation_training_without_CNN_optimized import *
+from cross_validation_training_without_CNN_fc import *
 from redundancy_removal import *
       
-def main_cross_validation(global_args):
+def main_cross_validation_without_CNN(global_args):
     #Reading sequence data and peptide-MHC binding data
     [blosum_matrix, aa, main_dir, output_path] = global_args
     path_seq = main_dir+ "HLA_A_B.txt"
@@ -30,7 +32,7 @@ def main_cross_validation(global_args):
     #Cross-validation
     performance_dicts = []
     for split in range(n_splits):
-        performance_dict = cross_validation_training(np.array(training_data[split]), test_dicts[split], 
+        performance_dict = cross_validation_training_without_CNN(np.array(training_data[split]), test_dicts[split], 
                                           validation_data, validation_target, global_args)
         performance_dicts.append(performance_dict)
         
