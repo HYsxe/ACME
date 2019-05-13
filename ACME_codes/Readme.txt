@@ -18,7 +18,7 @@ ACME: Attention-basd Convlutional neural network for MHC Epitope prediction
     
         main_dir = "/home/user_1/ACME-master/ACME_codes/"
     
-    Then unzip the proteome data file using the following command
+    Then unzip the proteome data file using the following command.
     
         unzip proteome.zip
 
@@ -74,11 +74,11 @@ ACME: Attention-basd Convlutional neural network for MHC Epitope prediction
 	
 	The output file is /results/cross_validation.txt.
 
-2: Testing the trained models on external datasets.
+    2: Testing the trained models on external datasets.
 
 	The output file is /results/testing_on_IEDB_benchmark_datasets.txt	
 
-3.Test whether or not the attention module can detect important residues.
+    3.Test whether or not the attention module can detect important residues.
 
 	For details, see section 4 in Supplementary Notes. 
 	
@@ -88,34 +88,62 @@ ACME: Attention-basd Convlutional neural network for MHC Epitope prediction
 	
 	It also contains the average D1, D2 and test results for all alleles (last line).
 
-4.Generate binding motifs (using peptides with high binding affinities).
+    4.Generate binding motifs (using peptides with high binding affinities).
+    
 	The output is a dictionary. The keys are alleles and their corresponding
+	
 	values are the attenttion matrix A described in section 4.9, Materials and methods.
+	
 	The output file is /results/binder_motif.txt
 
-5.Generate binding motifs for non-binders (i.e. using peptides with low binding affinities)
+    5.Generate binding motifs for non-binders (i.e. using peptides with low binding affinities).
+    
 	The output file is /results/non_binder_motif.txt
 
-6.Make predictions for alleles with no training data.
-	See section 2.4 and 4.7 for details.
-	The output file is /results/non_binder_motif.txt
+    6.Make predictions for alleles with no training data.
+    
+	See section 2.4 and 4.7 for details. You can specify the alleles to be tested in ACME_codes/main_leave_one_out.py
+	
+	For example, to test A*02:01, change line 28 to: 
+	
+	    alleles = ["A*02:01"]
+	
+	The output file is /results/ACME_leave_one_out.txt
 
-7.Test whether the anti-anchor residues can impair binding. 
+    7.Test whether the anti-anchor residues can impair binding. 
+    
 	The output file is /results/anti_anchor.txt	
+	
 	The output contains the allele, the amino acid type of the anti-anchor residue its position in the peptide,
+	
 	averaged prediction score after replacing peptide residues with the anti-anchor,
+	
 	averaged prediction score after replacing the same residues with a random residue
+	
 	and the Kruskal test results.
 
-8.Make binding predictions for new alleles and peptides.
-	Read input data from /binding_prediction/prediction_input.txt
-	(Some examples of the input are shown in /binding_prediction/prediction_input_example.txt)
-	Make binding predictions and save the results to /results/binding_prediction.txt
-	Prediction scores range from 0 to 1. Higher scores indicate higher binding affinities.
-	Peptides with scores above 0.42 can be considered to be strong binders.
+    8.Cross validation using a model without the attention module.
+    
+	The output file is results/cross_validation_without_attention_9mer.txt
+	
+	You can also run the test on peptides with other lengths. See the instructions for function 1.
+	
+    9.Cross validation using a model without the convolutional module.
+    
+        The output file is results/cross_validation_without_CNN_9mer.txt
+	
+	You can also run the test on peptides with other lengths. See the instructions for function 1.
+	
+    10.Calculating the reference information (RI) of different MHC alleles.
+    
+        Calculate the reference information of each allele when their data are not present in the training set.
+	
+	The output file is results/MHC_RI.txt
 
 5. Problems
+
 If you have problems using ACME, please contact hysxe97@gmail.com or hysxe@126.com.
+
 Hope you enjoy using the software!
 
 Yan Hu, 
