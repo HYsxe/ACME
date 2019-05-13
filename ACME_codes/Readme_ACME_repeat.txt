@@ -46,7 +46,7 @@ ACME: Attention-basd Convlutional neural network for MHC Epitope prediction
 
     (4)The output of all the other functions will be saved to the /results folder.
 
-4. Functions
+5. Functions
 
     To run the k th function, change the last line of main.py to main(i). 
     
@@ -78,9 +78,9 @@ ACME: Attention-basd Convlutional neural network for MHC Epitope prediction
 
 	The output file is /results/testing_on_IEDB_benchmark_datasets.txt	
 
-    3.Test whether or not the attention module can detect important residues.
+    3: Test whether or not the attention module can detect important residues.
 
-	For details, see section 4 in Supplementary Notes. 
+	For details, see section 1.9 in Supplementary Notes. 
 	
 	The output file is /results/attention_test.txt
 	
@@ -88,21 +88,21 @@ ACME: Attention-basd Convlutional neural network for MHC Epitope prediction
 	
 	It also contains the average D1, D2 and test results for all alleles (last line).
 
-    4.Generate binding motifs (using peptides with high binding affinities).
+    4: Generate binding motifs (using peptides with high binding affinities).
     
 	The output is a dictionary. The keys are alleles and their corresponding
 	
-	values are the attenttion matrix A described in section 4.9, Materials and methods.
+	values are the attenttion matrix A described Supplementary Notes Section 1.9.
 	
 	The output file is /results/binder_motif.txt
 
-    5.Generate binding motifs for non-binders (i.e. using peptides with low binding affinities).
+    5: Generate binding motifs for non-binders (i.e. using peptides with low binding affinities).
     
 	The output file is /results/non_binder_motif.txt
 
-    6.Make predictions for alleles with no training data.
+    6: Make predictions for alleles with no training data.
     
-	See section 2.4 and 4.7 for details. You can specify the alleles to be tested in ACME_codes/main_leave_one_out.py
+	See Section 3.2 for details. You can specify the alleles to be tested in ACME_codes/main_leave_one_out.py
 	
 	For example, to test A*02:01, change line 28 to: 
 	
@@ -110,7 +110,7 @@ ACME: Attention-basd Convlutional neural network for MHC Epitope prediction
 	
 	The output file is /results/ACME_leave_one_out.txt
 
-    7.Test whether the anti-anchor residues can impair binding. 
+    7: Test whether the anti-anchor residues can impair binding. 
     
 	The output file is /results/anti_anchor.txt	
 	
@@ -122,25 +122,27 @@ ACME: Attention-basd Convlutional neural network for MHC Epitope prediction
 	
 	and the Kruskal test results.
 
-    8.Cross validation using a model without the attention module.
+    8: Cross validation using a model without the attention module.
     
 	The output file is results/cross_validation_without_attention_9mer.txt
 	
 	You can also run the test on peptides with other lengths. See the instructions for function 1.
 	
-    9.Cross validation using a model without the convolutional module.
+    9: Cross validation using a model without the convolutional module.
     
         The output file is results/cross_validation_without_CNN_9mer.txt
 	
 	You can also run the test on peptides with other lengths. See the instructions for function 1.
 	
-    10.Calculating the reference information (RI) of different MHC alleles.
+    10: Calculating the reference information (RI) of different MHC alleles.
     
         Calculate the reference information of each allele when their data are not present in the training set.
 	
-	The output file is results/MHC_RI.txt
+	The output file is results/MHC_RI.txt 
+	
+	For the definition of Reference information, see Supplementary Notes Section 1.6. 
 
-5. Problems
+6. Problems
 
 If you have problems using ACME, please contact hysxe97@gmail.com or hysxe@126.com.
 
