@@ -84,7 +84,7 @@ def main(func_ind):
         output_path = main_dir + "results/cross_validation_without_CNN_9mer.txt"
         main_cross_validation_without_CNN([blosum_matrix, aa, main_dir, output_path])  
     elif func_ind == 10:
-        #Calculating the reference information (RI)
+        #Calculating the reference information (RI) of different MHC alleles.
         output_path = main_dir + "results/MHC_RI.txt"
         main_MHC_clustering([blosum_matrix, aa, main_dir, output_path])   
 
