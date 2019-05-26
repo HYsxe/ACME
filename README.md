@@ -17,7 +17,7 @@ Supplementary data and codes for the ACME algorithm.
     
     1.3 Protocol
     
-    (1) Download the ACME_codes/ folder.
+    (1) Download the ACME_codes/ folder. (About 350MB, might take a few minutes)
         
     (2) Change the working directory to this folder. 
         
