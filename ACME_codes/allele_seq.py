@@ -39,7 +39,4 @@ def allele_seq(path):
             #be aligned well with the majority of HLA A and B alleles, (see this in uniprot)
             seq_dict.pop(allele)      
             
-    for allele in sorted(seq_dict.keys()):
-        print allele
-        print seq_dict[allele]
     return seq_dict
