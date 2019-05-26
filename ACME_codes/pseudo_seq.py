@@ -34,6 +34,5 @@ def pseudo_seq(seq_dict,global_args):
             pseq+= seq_dict[allele][index]
             new_pseq.append(blosum_matrix[aa[seq_dict[allele][index]]]) 
         pseq_dict[allele] = new_pseq
-        print pseq
     
     return pseq_dict
