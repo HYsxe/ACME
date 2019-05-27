@@ -30,7 +30,6 @@ from main_pearson_benchmark_redundancy import *
 from main_anti_anchor import *
 from main_cross_validation_without_attention import *
 from main_cross_validation_without_CNN import *
-from main_cross_validation_attention_fc import *
 from main_binding_prediction import *
 #Output
 from foutput import *
