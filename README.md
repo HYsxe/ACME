@@ -11,7 +11,7 @@ Supplementary data and codes for the ACME algorithm.
   
     Python2, Linux system
     
-    Python packages: re, keras(version 2.1.4), tensorflow (version 1.5.0), sklearn, math, scipy, numpy, distance
+    Python packages: re, keras (version 2.1.4), tensorflow (version 1.5.0), sklearn, math, scipy, numpy, distance
     
     We recommend that you run the software on a server instead of a PC due to the relatively large memory usage.
     
