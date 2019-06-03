@@ -5,7 +5,7 @@ Supplementary data and codes for the ACME algorithm.
 
     1.1 Description
   
-    Reads input peptide sequences and MHC alleles provided by the user and then make binding predictions. The results are saved to a file.
+    Reads input peptide sequences and MHC alleles provided by the user and then makes binding predictions. The results are saved to a file.
     
     1.2 Requirements
   
@@ -39,7 +39,9 @@ Supplementary data and codes for the ACME algorithm.
     
 	Prediction scores range from 0 to 1. Higher scores indicate higher binding affinities.
 	
-	Peptides with scores above 0.42 can be considered to be strong binders.
+	Peptides with scores above 0.42 can be considered to be strong binders. 
+	
+	However, the specific threshold for classification might vary in different experimental setups.
     
 2. Repeating the experiments in the ACME paper.
 
