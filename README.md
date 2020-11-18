@@ -48,7 +48,7 @@ Supplementary data and codes for the ACME algorithm.
     Please download the ACME_codes/ folder and follow the instructions in the Readme_ACME_repeat.txt file.
  
 
-If you have problems using ACME, please contact hysxe97@gmail.com
+If you have problems using ACME, please contact yanhu@g.harvard.edu
   
 Yan Hu
 
