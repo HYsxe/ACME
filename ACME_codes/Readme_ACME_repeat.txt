@@ -144,7 +144,7 @@ ACME: Attention-basd Convlutional neural network for MHC Epitope prediction
 
 6. Problems
 
-If you have problems using ACME, please contact hysxe97@gmail.com or hysxe@126.com.
+If you have problems using ACME, please contact yanhu@g.harvard.edu.
 
 Hope you enjoy using the software!
 
