@@ -23,7 +23,7 @@ Supplementary data and codes for the ACME algorithm.
         
          Example command: cd /home/user/ACME_codes
         
-    (3) Change the path in ACME_codes/binding_prediction.py to the current path of this folder.
+    (3) Change the path in ACME_codes/binding_prediction.py as well as main.py to the current path of this folder.
 
          Example: main_dir = "/home/user/ACME_codes/"
          
